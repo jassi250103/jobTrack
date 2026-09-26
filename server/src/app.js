@@ -1,0 +1,10 @@
+import express from 'express'; import cors from 'cors';
+import { env } from './config/env.js';
+import authRoutes from './routes/auth.routes.js'; import companyRoutes from './routes/company.routes.js'; import applicationRoutes from './routes/application.routes.js'; import interviewRoutes from './routes/interview.routes.js';
+import dashboardRoutes from './routes/dashboard.routes.js';
+import { errorHandler, notFound } from './middleware/error-handler.js';
+const app = express(); app.use(cors({ origin: env.corsOrigin === '*' ? true : env.corsOrigin.split(',').map((origin) => origin.trim()) })); app.use(express.json({ limit: '100kb' })); app.use((req, res, next) => { req.body ??= {}; next(); });
+app.get('/health', (req, res) => res.json({ success: true, data: { status: 'ok' } }));
+app.use('/api/auth', authRoutes); app.use('/api/companies', companyRoutes); app.use('/api/applications', applicationRoutes); app.use('/api/interviews', interviewRoutes);
+app.use('/api/dashboard', dashboardRoutes);
+app.use(notFound); app.use(errorHandler); export default app;
