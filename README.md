@@ -94,4 +94,4 @@ Add product screenshots here when publishing the portfolio.
 
 ## Future Improvements
 
-Email reminders, saved views, application import/export, document attachments, analytics history, and automated job-board import.
+Email reminders, saved views, application import/export, document attachments, analytics history, and automated job-board import, some job from linkedln.
